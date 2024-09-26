@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "131442490560",
+    "project_id": "ajbar-kottkal-tets",
+    "storage_bucket": "ajbar-kottkal-tets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:131442490560:android:1ed3722b2aa9a6d6820125",
+        "android_client_info": {
+          "package_name": "com.test.kottakkal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3AvOacmDX8VHXFacHGlpNWhUf54LU2Jo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

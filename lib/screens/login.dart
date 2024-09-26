@@ -198,8 +198,9 @@
 //   }
 
 // }
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflitenew/screens/category.dart';
+import 'package:sqflitenew/screens/home_screen.dart';
 import 'package:sqflitenew/screens/createaccount.dart';
 import 'package:sqflitenew/screens/forgotpasswrd.dart';
 
@@ -240,63 +241,12 @@ class _State extends State<LoginPage> {
                             fontSize: 30),
                       )),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
-                      autofocus: false,
-                      controller: nameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Enter Correct Name";
-                        } else {
-                          return null;
-                        }
-                      },
-                      onSaved: (value) {
-                        nameController.text = value!;
-                      },
-                      // textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        //   prefixIcon: Icon(Icons.vpn_key),
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "username",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      )),
+                CustomTextField(nameController: nameController, name: "Email"),
+                const SizedBox(
+                  height: 10,
                 ),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: TextFormField(
-                      autofocus: false,
-                      controller: passwordController,
-                      obscureText: true,
-                      validator: (value) {
-                        RegExp regex = new RegExp(r'^.{6,}$');
-                        if (value!.isEmpty) {
-                          return ("Password is required for login");
-                        }
-                        if (!regex.hasMatch(value)) {
-                          return ("Enter Valid Password(Min. 6 Character)");
-                        }
-                      },
-                      onSaved: (value) {
-                        passwordController.text = value!;
-                      },
-                      textInputAction: TextInputAction.next,
-                      decoration: InputDecoration(
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        //   prefixIcon: Icon(Icons.vpn_key),
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                        hintText: "Password",
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      )),
-                ),
+                CustomTextField(
+                    nameController: nameController, name: "Pasword"),
                 Row(
                   children: [
                     TextButton(
@@ -315,7 +265,12 @@ class _State extends State<LoginPage> {
                     ),
                   ],
                 ),
-                const CustomButton(name: 'CONTINUE',),
+                CustomButton(
+                  name: 'CONTINUE',
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const HomeScreen(),));
+                  },
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -327,7 +282,7 @@ class _State extends State<LoginPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Createnewaccount(
+                                builder: (context) => const Createnewaccount(
                                     // product: allproductss,
                                     )));
                         //signup screen
@@ -343,28 +298,22 @@ class _State extends State<LoginPage> {
 class CustomButton extends StatelessWidget {
   final String name;
   final VoidCallback? onTap;
-  const CustomButton({
-    super.key,
-    required this.name,
-    this.onTap
-  });
+  const CustomButton({super.key, required this.name, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:
-            const EdgeInsets.only(right: 10, left: 10, top: 20),
+        padding: const EdgeInsets.only(right: 10, left: 10, top: 20),
         child: SizedBox(
             width: double.infinity,
             // height: 50,
             child: ElevatedButton(
-              
-              onPressed:onTap,
+              onPressed: onTap,
               style: ElevatedButton.styleFrom(
-                
                 backgroundColor: const Color(0xff5473bb),
                 //  elevation: 10,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4)),
                 //shape: const StadiumBorder(),
                 padding: const EdgeInsets.symmetric(
                   vertical: 15,
@@ -372,10 +321,55 @@ class CustomButton extends StatelessWidget {
                 ),
               ),
               //
-              child:  Text(
+              child: Text(
                 name,
                 style: const TextStyle(color: Colors.white),
               ),
             )));
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField(
+      {super.key, required this.nameController, required this.name});
+
+  final TextEditingController nameController;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                offset: const Offset(3, 3),
+                color: Colors.grey.withOpacity(0.5),
+                blurRadius: 10)
+          ]),
+      child: TextFormField(
+          autofocus: false,
+          controller: nameController,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Enter Correct Name";
+            } else {
+              return null;
+            }
+          },
+          onSaved: (value) {
+            nameController.text = value!;
+          },
+          // textInputAction: TextInputAction.next,
+          decoration: InputDecoration(
+              hintStyle: const TextStyle(color: Colors.grey),
+              //   prefixIcon: Icon(Icons.vpn_key),
+              contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+              hintText: name,
+              border: InputBorder.none)),
+    );
   }
 }
