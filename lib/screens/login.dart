@@ -19,14 +19,13 @@
 
 // class _loginpageeState extends State<loginpagee> {
 
-
 //   final TextEditingController name_controller = new TextEditingController();
 //   final TextEditingController password_controller = new TextEditingController();
 //   late SharedPreferences registerData;
 //   bool? newuser;
 //   late String usernamee;
 //   late String password;
-  
+
 //   @override
 //   Widget build(BuildContext context) {
 //     final _formKey = GlobalKey<FormState>();
@@ -44,7 +43,7 @@
 //               mainAxisAlignment: MainAxisAlignment.start,
 //               crossAxisAlignment: CrossAxisAlignment.start,
 //               children: [
-              
+
 //                 Padding(
 //                   padding: const EdgeInsets.all(82),
 //                   child: Container(
@@ -185,7 +184,7 @@
 //                               horizontal: 50,
 //                             ),
 //                           ),
-//           //               
+//           //
 //                           child: Text(
 //                             "LOGIN",
 //                           ),
@@ -204,11 +203,11 @@ import 'package:sqflitenew/screens/category.dart';
 import 'package:sqflitenew/screens/createaccount.dart';
 import 'package:sqflitenew/screens/forgotpasswrd.dart';
 
-
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => new _State();
+  State<StatefulWidget> createState() => _State();
 }
 
 class _State extends State<LoginPage> {
@@ -219,21 +218,21 @@ class _State extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-
         appBar: AppBar(
           backgroundColor: Colors.white,
-         elevation: 0,
+          elevation: 0,
         ),
         body: Padding(
-            padding: EdgeInsets.only(left: 10,bottom: 50,right: 22,top: 160),
+            padding: const EdgeInsets.only(
+                left: 10, bottom: 50, right: 22, top: 160),
             child: ListView(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.only(bottom: 60),
-                      child: Text(
+                      padding: const EdgeInsets.only(bottom: 60),
+                      child: const Text(
                         'MIMO',
                         style: TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
@@ -242,125 +241,131 @@ class _State extends State<LoginPage> {
                       )),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
-                  child:    TextFormField(
-                                      autofocus: false,
-                                      controller: nameController,
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          return "Enter Correct Name";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        nameController.text = value!;
-                                      },
-                                      // textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        //   prefixIcon: Icon(Icons.vpn_key),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                        hintText: "username",
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      )),
+                  padding: const EdgeInsets.all(10),
+                  child: TextFormField(
+                      autofocus: false,
+                      controller: nameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter Correct Name";
+                        } else {
+                          return null;
+                        }
+                      },
+                      onSaved: (value) {
+                        nameController.text = value!;
+                      },
+                      // textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        //   prefixIcon: Icon(Icons.vpn_key),
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        hintText: "username",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      )),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextFormField(
-                                      autofocus: false,
-                                      controller: passwordController,
-                                      obscureText: true,
-                                      validator: (value) {
-                                        RegExp regex = new RegExp(r'^.{6,}$');
-                                        if (value!.isEmpty) {
-                                          return ("Password is required for login");
-                                        }
-                                        if (!regex.hasMatch(value)) {
-                                          return ("Enter Valid Password(Min. 6 Character)");
-                                        }
-                                      },
-                                      onSaved: (value) {
-                                        passwordController.text = value!;
-                                      },
-                                      textInputAction: TextInputAction.next,
-                                      decoration: InputDecoration(
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey),
-                                        //   prefixIcon: Icon(Icons.vpn_key),
-                                        contentPadding:
-                                            EdgeInsets.fromLTRB(20, 15, 20, 15),
-                                        hintText: "Password",
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                      )),
+                      autofocus: false,
+                      controller: passwordController,
+                      obscureText: true,
+                      validator: (value) {
+                        RegExp regex = new RegExp(r'^.{6,}$');
+                        if (value!.isEmpty) {
+                          return ("Password is required for login");
+                        }
+                        if (!regex.hasMatch(value)) {
+                          return ("Enter Valid Password(Min. 6 Character)");
+                        }
+                      },
+                      onSaved: (value) {
+                        passwordController.text = value!;
+                      },
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        //   prefixIcon: Icon(Icons.vpn_key),
+                        contentPadding:
+                            const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      )),
                 ),
-                TextButton(
-                 
-                  onPressed: (){
-                   Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ForgotPasswordScreen(
-                          // product: allproductss,
-                          )));
-                  },
-                
-                  child: Text('Forgot Password',style: TextStyle(color: Colors.black),),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForgotPasswordScreen(
+                                    // product: allproductss,
+                                    )));
+                      },
+                      child: const Text(
+                        'Forgot Password',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
                 ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10, left: 10, top: 20),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(right: 10, left: 10, top: 20),
                     child: SizedBox(
                         width: double.infinity,
                         // height: 50,
                         child: ElevatedButton(
+                          
                           onPressed: () {
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>category()), (route) => false);
-
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => category()),
+                                (route) => false);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 54, 78, 210),
+                            
+                            backgroundColor: const Color(0xff5473bb),
                             //  elevation: 10,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                             //shape: const StadiumBorder(),
                             padding: const EdgeInsets.symmetric(
                               vertical: 15,
                               horizontal: 50,
                             ),
                           ),
-          //               
-                          child: Text(
-                            "LOGIN",
+                          //
+                          child: const Text(
+                            "CONTINUE",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ))),
-                Container(
-                    child: Row(
-                      children: <Widget>[
-                        Text('Does not have account?'),
-                        TextButton(
-                          child: Text(
-                            'Register',style: TextStyle(color: Colors.black,fontSize: 20)
-                          
-                          ),
-                          onPressed: () {
-                             Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Createnewaccount(
-                          // product: allproductss,
-                          )));
-                            //signup screen
-                          },
-                        )
-                      ],
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('Does not have account?'),
+                    TextButton(
+                      child: const Text('Register',
+                          style: TextStyle(color: Colors.black, fontSize: 15)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Createnewaccount(
+                                    // product: allproductss,
+                                    )));
+                        //signup screen
+                      },
+                    )
+                  ],
+                )
               ],
             )));
   }
