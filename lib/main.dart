@@ -7,7 +7,6 @@ import 'package:google_api_availability/google_api_availability.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflitenew/firebase_options.dart';
 import 'package:sqflitenew/provider/database_provider.dart';
-import 'package:sqflitenew/screens/auth/login_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflitenew/screens/splash/splash_screen.dart';
 import 'package:sqflitenew/services/sqflite_db.dart';
