@@ -53,16 +53,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyC3AvOacmDX8VHXFacHGlpNWhUf54LU2Jo',
     appId: '1:131442490560:android:1ed3722b2aa9a6d6820125',
     messagingSenderId: '131442490560',
-    projectId: 'ajbar-kottkal-tets',
-    storageBucket: 'ajbar-kottkal-tets.appspot.com',
+    projectId: 'kottkal-tets',
+    storageBucket: 'kottkal-tets.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBvwL8b1CYYNfeBg6E-Ob_MWwAsvshP4BM',
     appId: '1:131442490560:ios:84dd958db24fde98820125',
     messagingSenderId: '131442490560',
-    projectId: 'ajbar-kottkal-tets',
-    storageBucket: 'ajbar-kottkal-tets.appspot.com',
+    projectId: 'kottkal-tets',
+    storageBucket: 'kottkal-tets.appspot.com',
     iosBundleId: 'com.example.sqflitenew',
   );
 }

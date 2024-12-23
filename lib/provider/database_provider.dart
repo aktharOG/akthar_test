@@ -1,15 +1,11 @@
 import 'dart:developer';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflitenew/helpers/naviagtion_helper.dart';
 import 'package:sqflitenew/model/todo_model.dart';
 import 'package:sqflitenew/services/sqflite_db.dart';
 
 class DatabaseProvider extends ChangeNotifier {
-  final fireStore = FirebaseFirestore.instance;
-  DocumentReference? documentReference;
 
   TextEditingController titleController = TextEditingController();
   TextEditingController taskController = TextEditingController();

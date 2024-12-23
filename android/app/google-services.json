@@ -1,8 +1,8 @@
 {
   "project_info": {
     "project_number": "131442490560",
-    "project_id": "ajbar-kottkal-tets",
-    "storage_bucket": "ajbar-kottkal-tets.appspot.com"
+    "project_id": "kottkal-tets",
+    "storage_bucket": "kottkal-tets.appspot.com"
   },
   "client": [
     {
