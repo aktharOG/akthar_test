@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflitenew/helpers/naviagtion_helper.dart';
 import 'package:sqflitenew/model/todo_model.dart';
 import 'package:sqflitenew/services/sqflite_db.dart';
 
@@ -13,11 +15,12 @@ class DatabaseProvider extends ChangeNotifier {
   TextEditingController taskController = TextEditingController();
   TextEditingController taskItemController = TextEditingController();
 
-  List<TodoModel> _todoList = [];
+  List<TodoModel> _todoList = [
+  ];
   List<TodoModel> get todoList => _todoList;
 
-  List<String> _totalTasksList = [];
-  List<String> _selectedTasksList = [];
+ final List<String> _totalTasksList = [];
+ final List<String> _selectedTasksList = [];
 
   String? selectedTaskTitle;
   Map<String, dynamic>? selectedTask;
@@ -32,32 +35,6 @@ class DatabaseProvider extends ChangeNotifier {
     // Add more tasks
   ];
 
-  onAddTodo() async {
-    log("Attempting to add todo...");
-    try {
-      DocumentReference docRef =
-          await FirebaseFirestore.instance.collection('todo').add({
-        'title': titleController.text,
-        'task': taskController.text,
-      });
-      log("Todo added successfully", name: 'DatabaseProvider');
-    } catch (e) {
-      log("Failed to add todo: $e", name: 'DatabaseProvider');
-    }
-  }
-
-  onAddTask() async {
-    log("Attempting to add todo...");
-    try {
-      DocumentReference docRef =
-          await FirebaseFirestore.instance.collection('tasks').add({
-        'task': taskItemController.text,
-      });
-      log("Todo added successfully", name: 'DatabaseProvider');
-    } catch (e) {
-      log("Failed to add todo: $e", name: 'DatabaseProvider');
-    }
-  }
 
   // sqflite
 
@@ -66,20 +43,31 @@ class DatabaseProvider extends ChangeNotifier {
       title: titleController.text,
       task: selectedTaskTitle ?? "",
     ));
-    print("task : $selectedTaskTitle");
+    if (kDebugMode) {
+      print("task : $selectedTaskTitle");
+    }
     log("databse insertion completed", name: "DatabaseProvider");
+    log("title :: ${titleController.text}");
+    log("task :: $selectedTaskTitle");
+    titleController.clear();
+    selectedTaskTitle = null;
     onGetAllTodosSqflite();
 
     notifyListeners();
   }
 
   onGetAllTodosSqflite() async {
+
     _todoList = await DatabaseHelper().getAllTodos();
+    notifyListeners();
     log("total todos : ${_todoList.length}", name: "DatabaseProvider");
+    log("items  ::: ${_todoList.map((e) => e.toJson(),)}");
+        _todoList.insert(0, TodoModel(title: "sample", task: "sample"));
+
     notifyListeners();
   }
 
-  onDelete(id) async {
+ Future onDelete(id) async {
     DatabaseHelper().deleteTodoById(id);
     onGetAllTodosSqflite();
     notifyListeners();

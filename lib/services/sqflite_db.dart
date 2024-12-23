@@ -61,7 +61,7 @@ class DatabaseHelper {
     if (maps.isNotEmpty) {
       return maps
           .map(
-            (e) => TodoModel.fromMap(maps.first),
+            (e) => TodoModel.fromMap(e),
           )
           .toList();
     } else {
@@ -71,9 +71,12 @@ class DatabaseHelper {
 
   Future<void> clearTodos() async {
     final db = await database;
-    await db.delete('locations');
-    print("All locations cleared");
+    await db.delete('todo_database.db');
+    print("All items cleared");
   }
+
+
+  
 
   Future<void> deleteTodoById(int id) async {
     final db = await database;
@@ -82,6 +85,6 @@ class DatabaseHelper {
       where: 'id = ?',
       whereArgs: [id],
     );
-    print("All locations cleared");
+    print("All items cleared");
   }
 }

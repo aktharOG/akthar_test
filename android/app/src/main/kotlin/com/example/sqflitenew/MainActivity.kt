@@ -1,4 +1,4 @@
-package com.test.kottakkal
+package com.kottakkal.test.akthar
 
 import io.flutter.embedding.android.FlutterActivity
 import android.os.Bundle

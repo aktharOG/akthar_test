@@ -1,4 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:sqflitenew/constants/app_images.dart';
+import 'package:sqflitenew/helpers/naviagtion_helper.dart';
+import 'package:sqflitenew/screens/auth/login_screen.dart';
+import 'package:sqflitenew/services/sqflite_db.dart';
+import 'package:sqflitenew/widgets/custom_button.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -6,7 +13,10 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Settings')),
+        appBar: AppBar(
+          title: const Text('Settings'),
+          backgroundColor: Colors.white,
+        ),
         body: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
@@ -20,11 +30,9 @@ class SettingsScreen extends StatelessWidget {
                 ),
               ),
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
-              ),
+                  radius: 30, backgroundImage: AssetImage(AppImages.personImg)),
               title: Text(
-                'Kate Vincent',
+                'Malak Idrssl',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
@@ -47,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
               leading: const Icon(Icons.notifications),
               title: const Text(
                 'Notifications',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
               onTap: () {},
             ),
@@ -55,7 +63,7 @@ class SettingsScreen extends StatelessWidget {
               leading: const Icon(Icons.settings),
               title: const Text(
                 'General',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
               onTap: () {},
             ),
@@ -63,7 +71,7 @@ class SettingsScreen extends StatelessWidget {
               leading: const Icon(Icons.person),
               title: const Text(
                 'Account',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
               onTap: () {},
             ),
@@ -71,10 +79,22 @@ class SettingsScreen extends StatelessWidget {
               leading: const Icon(Icons.info),
               title: const Text(
                 'About',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
               ),
               onTap: () {},
             ),
+            CustomButton(
+              name: "Logout",
+              onTap: () async {
+                  Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ));
+                    showSnackBar(context, "Logout success");
+              
+              },
+            )
           ],
         ));
   }
